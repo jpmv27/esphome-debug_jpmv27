@@ -10,7 +10,7 @@ from esphome.const import (
 
 from . import CONF_DEBUG_ID, DebugComponent
 
-DEPENDENCIES = ["debug"]
+DEPENDENCIES = ["debug_jpmv27"]
 
 
 CONF_RESET_REASON = "reset_reason"

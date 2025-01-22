@@ -14,10 +14,8 @@ namespace debug {
 static const char *const TAG = "debug";
 
 void DebugComponent::dump_config() {
-#ifndef ESPHOME_LOG_HAS_DEBUG
-  return;  // Can't log below if debug logging is disabled
-#endif
 
+#ifdef ESPHOME_LOG_HAS_DEBUG
   ESP_LOGCONFIG(TAG, "Debug component:");
 #ifdef USE_TEXT_SENSOR
   LOG_TEXT_SENSOR("  ", "Device info", this->device_info_);
@@ -29,6 +27,7 @@ void DebugComponent::dump_config() {
   LOG_SENSOR("  ", "Heap fragmentation", this->fragmentation_sensor_);
 #endif  // defined(USE_ESP8266) && USE_ARDUINO_VERSION_CODE >= VERSION_CODE(2, 5, 2)
 #endif  // USE_SENSOR
+#endif
 
   std::string device_info;
   device_info.reserve(256);
