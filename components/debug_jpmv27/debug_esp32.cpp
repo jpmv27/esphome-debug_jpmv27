@@ -286,6 +286,9 @@ void DebugComponent::update_platform_() {
   if (this->block_sensor_ != nullptr) {
     this->block_sensor_->publish_state(heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL));
   }
+  if (this->min_sensor_ != nullptr) {
+    this->min_sensor_->publish_state(heap_caps_get_minimum_free_size(MALLOC_CAP_INTERNAL));
+  }
   if (this->psram_sensor_ != nullptr) {
     this->psram_sensor_->publish_state(heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
   }

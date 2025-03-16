@@ -36,6 +36,9 @@ void DebugComponent::update_platform_() {
   if (this->block_sensor_ != nullptr) {
     this->block_sensor_->publish_state(lt_heap_get_max_alloc());
   }
+  if (this->min_sensor_ != nullptr) {
+    this->min_sensor_->publish_state(lt_heap_get_min_free());
+  }
 #endif
 }
 

@@ -17,6 +17,7 @@ from . import CONF_DEBUG_ID, DebugComponent
 
 DEPENDENCIES = ["debug_jpmv27"]
 
+CONF_MINIMUM = "minimum"
 CONF_PSRAM = "psram"
 
 CONFIG_SCHEMA = {
@@ -28,6 +29,12 @@ CONFIG_SCHEMA = {
         entity_category=ENTITY_CATEGORY_DIAGNOSTIC,
     ),
     cv.Optional(CONF_BLOCK): sensor.sensor_schema(
+        unit_of_measurement=UNIT_BYTES,
+        icon=ICON_COUNTER,
+        accuracy_decimals=0,
+        entity_category=ENTITY_CATEGORY_DIAGNOSTIC,
+    ),
+    cv.Optional(CONF_MINIMUM): sensor.sensor_schema(
         unit_of_measurement=UNIT_BYTES,
         icon=ICON_COUNTER,
         accuracy_decimals=0,
@@ -72,6 +79,10 @@ async def to_code(config):
     if block_conf := config.get(CONF_BLOCK):
         sens = await sensor.new_sensor(block_conf)
         cg.add(debug_component.set_block_sensor(sens))
+
+    if min_conf := config.get(CONF_MINIMUM):
+        sens = await sensor.new_sensor(min_conf)
+        cg.add(debug_component.set_min_sensor(sens))
 
     if fragmentation_conf := config.get(CONF_FRAGMENTATION):
         sens = await sensor.new_sensor(fragmentation_conf)

@@ -79,6 +79,10 @@ void DebugComponent::update_platform_() {
     // NOLINTNEXTLINE(readability-static-accessed-through-instance)
     this->block_sensor_->publish_state(ESP.getMaxFreeBlockSize());
   }
+  if (this->min_sensor_ != nullptr) {
+    // NOLINTNEXTLINE(readability-static-accessed-through-instance)
+    this->min_sensor_->publish_state(ESP.getMinFreeHeap());
+  }
 #if USE_ARDUINO_VERSION_CODE >= VERSION_CODE(2, 5, 2)
   if (this->fragmentation_sensor_ != nullptr) {
     // NOLINTNEXTLINE(readability-static-accessed-through-instance)

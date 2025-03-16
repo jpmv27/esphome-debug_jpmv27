@@ -23,6 +23,7 @@ void DebugComponent::dump_config() {
 #ifdef USE_SENSOR
   LOG_SENSOR("  ", "Free space on heap", this->free_sensor_);
   LOG_SENSOR("  ", "Largest free heap block", this->block_sensor_);
+  LOG_SENSOR("  ", "Minimum space on heap", this->min_sensor_);
 #if defined(USE_ESP8266) && USE_ARDUINO_VERSION_CODE >= VERSION_CODE(2, 5, 2)
   LOG_SENSOR("  ", "Heap fragmentation", this->fragmentation_sensor_);
 #endif  // defined(USE_ESP8266) && USE_ARDUINO_VERSION_CODE >= VERSION_CODE(2, 5, 2)
